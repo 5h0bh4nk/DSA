@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+
+struct dlnode{
+	struct dlnode* left;
+	int data;
+	struct dlnode* right;
+};
+
+typedef dlnode* dlptr;
+
+void printdl(dlptr P) {
+	if(P==NULL)
+	cout<<endl;
+	else {
+		cout<<P->data<<" ";
+		printdl(P->right);
+	}
+}
+
+void insert(dlptr &D,int k)
+{
+	dlptr DL=new dlnode;
+	DL->data=k;
+	DL->left=NULL;DL->right=NULL;
+	if(D==NULL)
+	D=DL;
+	else
+	{
+		dlptr S=D;
+		while(S->right)
+		S=S->right;
+		S->right=DL;
+		DL->left=S;
+	}
+}
+
+void createdl(dlptr &DL)
+{
+    int x;cin>>x;
+    while(x!=-1)
+    {
+        insert(DL,x);
+        cin>>x;
+    }
+}
