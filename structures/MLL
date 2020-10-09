@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+
+
+struct mlnode{
+	int data;
+	struct mlnode* next;
+	struct mlnode* child;	
+};
+
+typedef struct mlnode* mlptr;
+
+void printl(mlptr L)
+{
+	if(L->next==NULL)
+	{cout<<endl;return;}
+	cout<<L->data<<" ";
+	printl(L->next);
+}
+
+void insert(mlptr &P,int n) {
+	if(P==NULL)
+	{
+		P=new(mlnode);
+		P->data=n;
+		P->next=NULL;
+		P->child=NULL;
+		return;
+	}
+	mlptr S=P;
+	while(S->next!=NULL)
+		S=S->next;
+
+	S->next=new(mlnode);
+	S->next->data=n;
+	S->next->next=NULL;
+	S->next->child=NULL;
+}
+
+void createml(mlptr ML,int n)
+{
+	int o;
+	while(n!=-2)
+	{
+		ML->data=n;ML->next=NULL;ML->child=NULL;
+		cin>>o;
+		if(o==1)
+		{
+			mlptr temp=NULL;
+			cin>>n;
+			while(n!=-1)
+			{
+				insert(temp,n);
+				cin>>n;
+			}
+			ML->child=temp;
+			ML->next=new(mlnode);
+			ML=ML->next;
+		}
+		else
+		{
+			ML->child=NULL;
+			ML->next=new(mlnode);
+			ML=ML->next;	
+		}
+		cin>>n;
+		if(n==-2)
+		{
+			ML->data=0;
+			ML->child=NULL;
+			ML->next=NULL;
+		}
+	}
+}
