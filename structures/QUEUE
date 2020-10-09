@@ -1,0 +1,43 @@
+struct queue{
+	int s=50;
+	int r=-1;
+	int f=-1;
+	int el[50];
+};
+
+void enque(struct queue &q,int x)
+{
+	if((q.r+1)%q.s==q.f)
+	cout<<"queue full !";
+	else{
+		if(q.f==-1)
+		{
+			q.f=0;
+			q.r=0;
+		}
+		else{
+			q.r=(q.r+1)%q.s;
+		}
+		q.el[q.r]=x;
+	}
+}
+
+int deque(struct queue &q)
+{
+	if(q.f==-1)
+	cout<<"empty!";
+	else{
+		int t;
+		if(q.f==q.r)
+		{
+			t=q.el[q.f];
+			q.f=-1;q.r=-1;
+		}
+		else{
+		    
+			t=q.el[q.f];
+			q.f=(q.f+1)%q.s;
+		}
+		return t;
+	}
+}
