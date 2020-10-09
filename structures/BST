@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+
+struct bstnode{
+	bstnode* lchild=NULL;
+	int data;
+	bstnode* rchild=NULL;
+};
+
+typedef bstnode* bstptr;
+
+void insert(bstptr &T,int k)
+{
+	if(T==NULL)
+	{
+		T = new bstnode;
+		T->data = k;
+		return;
+	}
+	else{
+		if(k<T->data)
+		insert(T->lchild,k);
+		else if(k>T->data)
+		insert(T->rchild,k);
+	}
+}
+
+void createbst(bstptr &T)
+{
+	int k;cin>>k;
+	while(k!=-1)
+	{
+		insert(T,k);
+		cin>>k;
+	}
+}
