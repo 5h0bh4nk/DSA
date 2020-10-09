@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+
+struct clnode {
+	int data;
+	struct clnode *next=NULL;
+};
+
+typedef struct clnode* clptr;
+
+void insert(clptr &PL,int n) {
+    if(PL==NULL)
+    {
+        PL=new clnode;
+        PL->data=n;
+        PL->next=NULL;
+        return;
+    }
+    clptr P=PL;
+	while(P->next!=NULL)
+		P=P->next;
+
+	P->next=new(clnode);
+	P->next->data=n;
+	P->next->next=NULL;
+}
+
+void connect(clptr C)
+{
+    clptr S=C;
+    while(S->next)
+    S=S->next;
+    S->next=C;
+}
