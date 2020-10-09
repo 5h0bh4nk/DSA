@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+struct node {
+	int data;
+	struct node *next=NULL;
+};
+
+typedef struct node * lptr;
+
+void printlist(lptr P) {
+	if(P==NULL)
+		cout<<endl;
+    else {
+		cout<<P->data<<" ";
+		printlist(P->next);
+	}
+}
+
+void revprintlist(lptr P) {
+	if(P==NULL)
+		return;
+    else {
+		revprintlist(P->next);
+		cout<<P->data<<" ";
+	}
+}
+
+void insert(lptr PL,int n) {
+
+	P=new(node);
+	P->data=n;
+	P->next=NULL;
+
+  if(PL==NULL)
+  PL=P;
+  else
+  {
+    lptr S=PL;
+    while(S->next)
+    S=S->next;
+    S->next=P;
+   }
+}
